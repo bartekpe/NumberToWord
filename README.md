@@ -1,6 +1,6 @@
 # NumberToWord
 class to convert number to polish words  
-klasa konwertujaca liczby na slowa
+klasa konwertująca liczby (np. kwotę na fakturze) na słowną postać
 
 usage/sposób użycia
 

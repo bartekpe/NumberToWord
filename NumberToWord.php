@@ -48,27 +48,24 @@
 
 		private function run($number){
 			foreach($number as $i => $num){
-				$this->words = array();	
-				
+				$this->words = array();				
 				if($i){
 					$this->isFraction = true;
-				}
-				
+				}				
 				foreach($num as $n){
 					$this->createWords(str_split(str_pad($n,3,0,STR_PAD_LEFT)));
-				}
-				
+				}				
 				$this->words = array_chunk($this->words,3);	
 				$this->joinWords();			
 			}
 		}
 
 		private function createWords($num){			
-			$size = count($num);			
-			$i = 0;
-			foreach ($num as $j => $n) {
-				if($n){
-					
+			$size = count($num);						
+
+			foreach ($num as $j => $n) {				
+				$number = $n;
+				if($n){					
 					if($j == 2 && $num[1] == 1){
 						$n = 0;						
 					}
@@ -76,26 +73,21 @@
 					if($j == 1 && $n == 1){
 						$n = 10 + $num[2];						
 					}
-					$number = str_pad($n, ($size-$i), 0, STR_PAD_RIGHT);
-					
-				}else{
-					$number = $n;
-				}
+					$number = str_pad($n, ($size-$j), 0, STR_PAD_RIGHT);					
+				}			
 				
-				$i++;
-
-				$this->caseNumbers[] = $number;
+				$this->caseNumbers[] = $number;								
 
 				if($number == 0){					
 					$this->words[] = null;						
 					continue;										
-				}				
+				}
 
 				if($number < 20){
 					$this->words[] = $this->counts[0][$number];
 				}elseif($number < 100){
 					$this->words[] = $this->counts[1][($number/10)-2];
-				}else{
+				}else{					
 					$this->words[] = $this->counts[2][($number/100)-1];
 				}				
 			}
